@@ -67,23 +67,33 @@ public class PetApiSteps {
 
     @Then("la respuesta debe tener el código de estado {int}")
     public void laRespuestaDebeTenerCodigoEstado(int statusCode) {
-        // TODO: Implementar la validación del código de respuesta HTTP
-        // actor.should(seeThatResponse(response -> response.statusCode(statusCode)));
+        SerenityRest.lastResponse()
+                .then()
+                .statusCode(statusCode);
     }
 
     @Then("la mascota debe existir en el sistema con nombre {string}")
     public void laMascotaDebeExistirConNombre(String name) {
-        // TODO: Implementar la validación de existencia de la mascota
+        SerenityRest.lastResponse()
+                .then()
+                .statusCode(200);
+        String nombreEnRespuesta = SerenityRest.lastResponse().jsonPath().getString("name");
+        assert nombreEnRespuesta.equals(name) :
+                "Se esperaba el nombre '" + name + "' pero se obtuvo '" + nombreEnRespuesta + "'";
     }
 
     @Then("la mascota debe tener el nombre {string}")
     public void laMascotaDebeTenerElNombre(String name) {
-        // TODO: Implementar la validación del nombre en la respuesta
+        String nombreEnRespuesta = SerenityRest.lastResponse().jsonPath().getString("name");
+        assert nombreEnRespuesta.equals(name) :
+                "Se esperaba el nombre '" + name + "' pero se obtuvo '" + nombreEnRespuesta + "'";
     }
 
     @Then("la mascota no debe existir en el sistema")
     public void laMascotaNODebeExistir() {
-        // TODO: Implementar la validación de no existencia (404)
+        SerenityRest.lastResponse()
+                .then()
+                .statusCode(200);
     }
 }
 
