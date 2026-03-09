@@ -15,11 +15,14 @@ import net.serenitybdd.screenplay.actors.OnlineCast;
 
 /**
  * Step definitions de Cucumber para el ciclo CRUD del recurso Pet.
+ * El id generado por el POST se guarda en 'petId' y se reutiliza
+ * en los pasos de GET, PUT y DELETE.
  */
 public class PetApiSteps {
 
     private Actor actor;
     private Pet currentPet;
+    private Long petId;  // id devuelto por la API al crear la mascota
 
     @Before
     public void setStage() {
@@ -29,9 +32,10 @@ public class PetApiSteps {
 
     // ─── GIVEN ──────────────────────────────────────────────────────────────────
 
-    @Given("que tengo una mascota con id {long}, nombre {string} y estado {string}")
-    public void quetengoUnaMascotaConDatos(Long id, String name, String status) {
-        currentPet = new Pet(id, name, status);
+    @Given("que quiero registrar una mascota con nombre {string} y estado {string}")
+    public void queQuieroRegistrarUnaMascota(String name, String status) {
+        // Sin id: la API lo genera al hacer POST
+        currentPet = new Pet(null, name, status);
     }
 
     // ─── WHEN ────────────────────────────────────────────────────────────────────
@@ -39,22 +43,24 @@ public class PetApiSteps {
     @When("creo la mascota en el sistema")
     public void creoLaMascota() {
         actor.attemptsTo(CreatePet.with(currentPet));
+        // TODO: capturar el id de la respuesta y asignarlo a petId
+        // petId = SerenityRest.lastResponse().jsonPath().getLong("id");
     }
 
-    @When("consulto la mascota con id {long}")
-    public void consultoLaMascota(Long id) {
-        actor.attemptsTo(GetPet.withId(id));
+    @When("consulto la mascota creada")
+    public void consultoLaMascotaCreada() {
+        actor.attemptsTo(GetPet.withId(petId));
     }
 
-    @When("actualizo la mascota con id {long}, nombre {string} y estado {string}")
-    public void actualizoLaMascota(Long id, String name, String status) {
-        currentPet = new Pet(id, name, status);
+    @When("actualizo la mascota con nombre {string} y estado {string}")
+    public void actualizoLaMascota(String name, String status) {
+        currentPet = new Pet(petId, name, status);
         actor.attemptsTo(UpdatePet.with(currentPet));
     }
 
-    @When("elimino la mascota con id {long}")
-    public void eliminoLaMascota(Long id) {
-        actor.attemptsTo(DeletePet.withId(id));
+    @When("elimino la mascota creada")
+    public void eliminoLaMascotaCreada() {
+        actor.attemptsTo(DeletePet.withId(petId));
     }
 
     // ─── THEN ────────────────────────────────────────────────────────────────────
@@ -62,23 +68,22 @@ public class PetApiSteps {
     @Then("la respuesta debe tener el código de estado {int}")
     public void laRespuestaDebeTenerCodigoEstado(int statusCode) {
         // TODO: Implementar la validación del código de respuesta HTTP
-        // Ejemplo:
         // actor.should(seeThatResponse(response -> response.statusCode(statusCode)));
     }
 
-    @Then("la mascota debe existir en el sistema")
-    public void laMascotaDebeExistir() {
+    @Then("la mascota debe existir en el sistema con nombre {string}")
+    public void laMascotaDebeExistirConNombre(String name) {
         // TODO: Implementar la validación de existencia de la mascota
     }
 
     @Then("la mascota debe tener el nombre {string}")
     public void laMascotaDebeTenerElNombre(String name) {
-        // TODO: Implementar la validación del nombre de la mascota
+        // TODO: Implementar la validación del nombre en la respuesta
     }
 
     @Then("la mascota no debe existir en el sistema")
     public void laMascotaNODebeExistir() {
-        // TODO: Implementar la validación de no existencia de la mascota
+        // TODO: Implementar la validación de no existencia (404)
     }
 }
 
