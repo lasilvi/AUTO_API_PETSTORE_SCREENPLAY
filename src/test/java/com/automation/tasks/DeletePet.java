@@ -18,7 +18,7 @@ public class DeletePet implements Task {
     }
 
     public static DeletePet withId(Long petId) {
-        return Tasks.instrumented(DeletePet.class, petId);
+        return new DeletePet(petId);
     }
 
     @Override

@@ -18,7 +18,7 @@ public class GetPet implements Task {
     }
 
     public static GetPet withId(Long petId) {
-        return Tasks.instrumented(GetPet.class, petId);
+        return new GetPet(petId);
     }
 
     @Override

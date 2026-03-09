@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=edge"/>
+<title>Test results - Class Ciclo CRUD del recurso Pet en la API PetStore</title>
+<link href="../css/base-style.css" rel="stylesheet" type="text/css"/>
+<link href="../css/style.css" rel="stylesheet" type="text/css"/>
+<script src="../js/report.js" type="text/javascript"></script>
+</head>
+<body>
+<div id="content">
+<h1>Class Ciclo CRUD del recurso Pet en la API PetStore</h1>
+<div class="breadcrumbs">
+<a href="../index.html">all</a> &gt; 
+<a href="../packages/default-package.html">default-package</a> &gt; Ciclo CRUD del recurso Pet en la API PetStore</div>
+<div id="summary">
+<table>
+<tr>
+<td>
+<div class="summaryGroup">
+<table>
+<tr>
+<td>
+<div class="infoBox" id="tests">
+<div class="counter">1</div>
+<p>tests</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="failures">
+<div class="counter">0</div>
+<p>failures</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="ignored">
+<div class="counter">0</div>
+<p>ignored</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="duration">
+<div class="counter">8.208s</div>
+<p>duration</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</td>
+<td>
+<div class="infoBox success" id="successRate">
+<div class="percent">100%</div>
+<p>successful</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="tab-container">
+<ul class="tabLinks">
+<li>
+<a href="#">Tests</a>
+</li>
+<li>
+<a href="#">Standard output</a>
+</li>
+</ul>
+<div class="tab">
+<h2>Tests</h2>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>Duration</th>
+<th>Result</th>
+</tr>
+</thead>
+<tr>
+<td class="success">Ciclo CRUD completo de una mascota</td>
+<td class="success">8.208s</td>
+<td class="success">passed</td>
+</tr>
+</table>
+</div>
+<div class="tab">
+<h2>Standard output</h2>
+<span class="code">
+<pre>
+@pet @crud_completo
+Scenario Outline: Ciclo CRUD completo de una mascota                                ?[90m# src/test/resources/features/pet_crud.feature:28?[0m
+  ?[32mGiven ?[0m?[32mque quiero registrar una mascota con nombre ?[0m?[32m?[1m&quot;Firulais&quot;?[0m?[32m y estado ?[0m?[32m?[1m&quot;available&quot;?[0m ?[90m# com.automation.stepdefinitions.PetApiSteps.queQuieroRegistrarUnaMascota(java.lang.String,java.lang.String)?[0m
+  ?[32mWhen ?[0m?[32mcreo la mascota en el sistema?[0m                                                ?[90m# com.automation.stepdefinitions.PetApiSteps.creoLaMascota()?[0m
+  ?[32mThen ?[0m?[32mla respuesta debe tener el codigo de estado ?[0m?[32m?[1m200?[0m                              ?[90m# com.automation.stepdefinitions.PetApiSteps.laRespuestaDebeTenerCodigoEstado(int)?[0m
+  ?[32mAnd ?[0m?[32mla mascota debe existir en el sistema con nombre ?[0m?[32m?[1m&quot;Firulais&quot;?[0m                   ?[90m# com.automation.stepdefinitions.PetApiSteps.laMascotaDebeExistirConNombre(java.lang.String)?[0m
+  ?[32mWhen ?[0m?[32mconsulto la mascota creada?[0m                                                   ?[90m# com.automation.stepdefinitions.PetApiSteps.consultoLaMascotaCreada()?[0m
+  ?[32mThen ?[0m?[32mla respuesta debe tener el codigo de estado ?[0m?[32m?[1m200?[0m                              ?[90m# com.automation.stepdefinitions.PetApiSteps.laRespuestaDebeTenerCodigoEstado(int)?[0m
+  ?[32mAnd ?[0m?[32mla mascota debe tener el nombre ?[0m?[32m?[1m&quot;Firulais&quot;?[0m                                    ?[90m# com.automation.stepdefinitions.PetApiSteps.laMascotaDebeTenerElNombre(java.lang.String)?[0m
+  ?[32mWhen ?[0m?[32mactualizo la mascota con nombre ?[0m?[32m?[1m&quot;Max&quot;?[0m?[32m y estado ?[0m?[32m?[1m&quot;sold&quot;?[0m                        ?[90m# com.automation.stepdefinitions.PetApiSteps.actualizoLaMascota(java.lang.String,java.lang.String)?[0m
+  ?[32mThen ?[0m?[32mla respuesta debe tener el codigo de estado ?[0m?[32m?[1m200?[0m                              ?[90m# com.automation.stepdefinitions.PetApiSteps.laRespuestaDebeTenerCodigoEstado(int)?[0m
+  ?[32mAnd ?[0m?[32mla mascota debe tener el nombre ?[0m?[32m?[1m&quot;Max&quot;?[0m                                         ?[90m# com.automation.stepdefinitions.PetApiSteps.laMascotaDebeTenerElNombre(java.lang.String)?[0m
+  ?[32mWhen ?[0m?[32melimino la mascota creada?[0m                                                    ?[90m# com.automation.stepdefinitions.PetApiSteps.eliminoLaMascotaCreada()?[0m
+  ?[32mThen ?[0m?[32mla respuesta debe tener el codigo de estado ?[0m?[32m?[1m200?[0m                              ?[90m# com.automation.stepdefinitions.PetApiSteps.laRespuestaDebeTenerCodigoEstado(int)?[0m
+  ?[32mAnd ?[0m?[32mla mascota no debe existir en el sistema?[0m                                      ?[90m# com.automation.stepdefinitions.PetApiSteps.laMascotaNODebeExistir()?[0m
+</pre>
+</span>
+</div>
+</div>
+<div id="footer">
+<p>
+<div>
+<label class="hidden" id="label-for-line-wrapping-toggle" for="line-wrapping-toggle">Wrap lines
+<input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
+</label>
+</div>Generated by 
+<a href="https://www.gradle.org">Gradle 9.0.0</a> at 9 mar 2026 15:29:45</p>
+</div>
+</div>
+</body>
+</html>
