@@ -91,9 +91,16 @@ public class PetApiSteps {
 
     @Then("la mascota no debe existir en el sistema")
     public void laMascotaNODebeExistir() {
+        // Verificar que el DELETE respondió 200
         SerenityRest.lastResponse()
                 .then()
                 .statusCode(200);
+
+        // Confirmar que la mascota ya no existe haciendo un GET → debe retornar 404
+        actor.attemptsTo(GetPet.withId(petId));
+        SerenityRest.lastResponse()
+                .then()
+                .statusCode(404);
     }
 }
 

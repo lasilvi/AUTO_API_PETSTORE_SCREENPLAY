@@ -1,5 +1,7 @@
 package com.automation.tasks;
 
+import com.automation.utils.Constants;
+import net.serenitybdd.rest.SerenityRest;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Task;
 import net.serenitybdd.screenplay.Tasks;
@@ -21,11 +23,10 @@ public class DeletePet implements Task {
 
     @Override
     public <T extends Actor> void performAs(T actor) {
-        // TODO: Implementar la llamada HTTP DELETE /pet/{petId} usando CallAnApi
-        // Ejemplo:
-        // actor.attemptsTo(
-        //     Delete.from("/pet/" + petId)
-        // );
+        SerenityRest.given()
+                .baseUri(Constants.BASE_URL)
+                .when()
+                .delete(Constants.PET_ENDPOINT + "/" + petId);
     }
 }
 
