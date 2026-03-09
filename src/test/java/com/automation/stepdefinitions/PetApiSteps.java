@@ -9,6 +9,7 @@ import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import net.serenitybdd.rest.SerenityRest;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.actors.OnStage;
 import net.serenitybdd.screenplay.actors.OnlineCast;
@@ -43,8 +44,7 @@ public class PetApiSteps {
     @When("creo la mascota en el sistema")
     public void creoLaMascota() {
         actor.attemptsTo(CreatePet.with(currentPet));
-        // TODO: capturar el id de la respuesta y asignarlo a petId
-        // petId = SerenityRest.lastResponse().jsonPath().getLong("id");
+        petId = SerenityRest.lastResponse().jsonPath().getLong("id");
     }
 
     @When("consulto la mascota creada")

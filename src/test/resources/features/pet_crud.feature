@@ -26,5 +26,5 @@ Feature: Ciclo CRUD del recurso Pet en la API PetStore
 
     Examples:
       | nombre   | estado    | nombre_actualizado | estado_actualizado |
-      | Firulais | available | Max                | sold               |
+      | cervero | available | Max                | sold               |
 
