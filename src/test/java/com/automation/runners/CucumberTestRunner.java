@@ -10,8 +10,8 @@ import org.junit.runner.RunWith;
         glue = "com.automation.stepdefinitions",
         plugin = {
                 "pretty",
-                "html:target/cucumber-reports/cucumber.html",
-                "json:target/cucumber-reports/cucumber.json"
+                "html:gradle-build/cucumber-reports/cucumber.html",
+                "json:gradle-build/cucumber-reports/cucumber.json"
         },
         tags = "@pet"
 )

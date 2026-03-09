@@ -41,6 +41,21 @@ public class PetApiSteps {
         currentPet = new Pet(petId, name, status);
     }
 
+    @Given("que existe la mascota {string}")
+    public void queExisteLaMascota(String name) {
+        // Crear un ID único para esta mascota
+        petId = System.currentTimeMillis();
+        currentPet = new Pet(petId, name, "available");
+
+        // Crear la mascota en la API
+        actor.attemptsTo(CreatePet.with(currentPet));
+
+        // Verificar que se creó correctamente
+        SerenityRest.lastResponse()
+                .then()
+                .statusCode(200);
+    }
+
     // ─── WHEN ────────────────────────────────────────────────────────────────────
 
     @When("creo la mascota en el sistema")

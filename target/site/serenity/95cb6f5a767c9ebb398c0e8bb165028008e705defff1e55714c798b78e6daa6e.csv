@@ -1,0 +1,3 @@
+"Story","Title","Result","Date","Stability","Duration (s)"
+"Ciclo CRUD del recurso Pet en la API PetStore","Consultar una mascota","SUCCESS","2026-03-09T16:42:23.9289664-05:00[America/Bogota]","0.0","0.45"
+"Ciclo CRUD del recurso Pet en la API PetStore","Actualizar una mascota","SUCCESS","2026-03-09T16:42:24.8732095-05:00[America/Bogota]","0.0","0.47"
