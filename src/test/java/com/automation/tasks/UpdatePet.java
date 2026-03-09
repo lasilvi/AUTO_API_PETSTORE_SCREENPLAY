@@ -1,9 +1,13 @@
 package com.automation.tasks;
 
 import com.automation.models.Pet;
+import com.automation.utils.Constants;
+import net.serenitybdd.rest.SerenityRest;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Task;
 import net.serenitybdd.screenplay.Tasks;
+
+import static io.restassured.http.ContentType.JSON;
 
 /**
  * Task de Screenplay para actualizar una mascota (PUT /pet).
@@ -22,11 +26,12 @@ public class UpdatePet implements Task {
 
     @Override
     public <T extends Actor> void performAs(T actor) {
-        // TODO: Implementar la llamada HTTP PUT /pet usando CallAnApi
-        // Ejemplo:
-        // actor.attemptsTo(
-        //     Put.to("/pet").with(request -> request.body(pet))
-        // );
+        SerenityRest.given()
+                .baseUri(Constants.BASE_URL)
+                .contentType(JSON)
+                .body(pet)
+                .when()
+                .put(Constants.PET_ENDPOINT);
     }
 }
 
