@@ -23,7 +23,7 @@
 <tr>
 <td>
 <div class="infoBox" id="tests">
-<div class="counter">4</div>
+<div class="counter">2</div>
 <p>tests</p>
 </div>
 </td>
@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">7.641s</div>
+<div class="counter">9.350s</div>
 <p>duration</p>
 </div>
 </td>
@@ -78,23 +78,13 @@
 </tr>
 </thead>
 <tr>
-<td class="success">Actualizar una mascota</td>
-<td class="success">0.961s</td>
+<td class="success">Ejecutar ciclo CRUD completo de una mascota #1</td>
+<td class="success">7.021s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
-<td class="success">Consultar una mascota</td>
-<td class="success">0.939s</td>
-<td class="success">passed</td>
-</tr>
-<tr>
-<td class="success">Crear una mascota</td>
-<td class="success">4.397s</td>
-<td class="success">passed</td>
-</tr>
-<tr>
-<td class="success">Eliminar una mascota</td>
-<td class="success">1.344s</td>
+<td class="success">Ejecutar ciclo CRUD completo de una mascota #2</td>
+<td class="success">2.329s</td>
 <td class="success">passed</td>
 </tr>
 </table>
@@ -103,33 +93,43 @@
 <h2>Standard output</h2>
 <span class="code">
 <pre>
-@epic:PetStore @feature:CicloCRUDdelrecursoPet @story:CicloCRUDcompletodeunamascota @pet @crud_completo
-Scenario Outline: Crear una mascota                                                 ?[90m# src/test/resources/features/pet_crud.feature:20?[0m
+@epic:PetStore @feature:CicloCRUDdelrecursoPet @story:CicloCRUDcompletodeunamascota @pet @crud_completo @flujo_completo
+Scenario Outline: Ejecutar ciclo CRUD completo de una mascota                       ?[90m# src/test/resources/features/pet_crud.feature:43?[0m
   ?[32mGiven ?[0m?[32mque quiero registrar una mascota con nombre ?[0m?[32m?[1m&quot;Firulais&quot;?[0m?[32m y estado ?[0m?[32m?[1m&quot;available&quot;?[0m ?[90m# com.automation.stepdefinitions.PetApiSteps.queQuieroRegistrarUnaMascota(java.lang.String,java.lang.String)?[0m
   ?[32mWhen ?[0m?[32mcreo la mascota en el sistema?[0m                                                ?[90m# com.automation.stepdefinitions.PetApiSteps.creoLaMascota()?[0m
   ?[32mThen ?[0m?[32mla respuesta debe tener el codigo de estado ?[0m?[32m?[1m200?[0m                              ?[90m# com.automation.stepdefinitions.PetApiSteps.laRespuestaDebeTenerCodigoEstado(int)?[0m
   ?[32mAnd ?[0m?[32mla mascota debe existir en el sistema con nombre ?[0m?[32m?[1m&quot;Firulais&quot;?[0m                   ?[90m# com.automation.stepdefinitions.PetApiSteps.laMascotaDebeExistirConNombre(java.lang.String)?[0m
+  ?[32mWhen ?[0m?[32mconsulto la mascota creada?[0m                                                   ?[90m# com.automation.stepdefinitions.PetApiSteps.consultoLaMascotaCreada()?[0m
+  ?[32mThen ?[0m?[32mla respuesta debe tener el codigo de estado ?[0m?[32m?[1m200?[0m                              ?[90m# com.automation.stepdefinitions.PetApiSteps.laRespuestaDebeTenerCodigoEstado(int)?[0m
+  ?[32mAnd ?[0m?[32mla mascota debe tener el nombre ?[0m?[32m?[1m&quot;Firulais&quot;?[0m                                    ?[90m# com.automation.stepdefinitions.PetApiSteps.laMascotaDebeTenerElNombre(java.lang.String)?[0m
+  ?[32mWhen ?[0m?[32mactualizo la mascota con nombre ?[0m?[32m?[1m&quot;Max&quot;?[0m?[32m y estado ?[0m?[32m?[1m&quot;sold&quot;?[0m                        ?[90m# com.automation.stepdefinitions.PetApiSteps.actualizoLaMascota(java.lang.String,java.lang.String)?[0m
+  ?[32mThen ?[0m?[32mla respuesta debe tener el codigo de estado ?[0m?[32m?[1m200?[0m                              ?[90m# com.automation.stepdefinitions.PetApiSteps.laRespuestaDebeTenerCodigoEstado(int)?[0m
+  ?[32mAnd ?[0m?[32mla mascota debe tener el nombre ?[0m?[32m?[1m&quot;Max&quot;?[0m                                         ?[90m# com.automation.stepdefinitions.PetApiSteps.laMascotaDebeTenerElNombre(java.lang.String)?[0m
+  ?[32mWhen ?[0m?[32mconsulto la mascota creada?[0m                                                   ?[90m# com.automation.stepdefinitions.PetApiSteps.consultoLaMascotaCreada()?[0m
+  ?[32mThen ?[0m?[32mla respuesta debe tener el codigo de estado ?[0m?[32m?[1m200?[0m                              ?[90m# com.automation.stepdefinitions.PetApiSteps.laRespuestaDebeTenerCodigoEstado(int)?[0m
+  ?[32mAnd ?[0m?[32mla mascota debe tener el nombre ?[0m?[32m?[1m&quot;Max&quot;?[0m                                         ?[90m# com.automation.stepdefinitions.PetApiSteps.laMascotaDebeTenerElNombre(java.lang.String)?[0m
+  ?[32mWhen ?[0m?[32melimino la mascota creada?[0m                                                    ?[90m# com.automation.stepdefinitions.PetApiSteps.eliminoLaMascotaCreada()?[0m
+  ?[32mThen ?[0m?[32mla respuesta debe tener el codigo de estado ?[0m?[32m?[1m200?[0m                              ?[90m# com.automation.stepdefinitions.PetApiSteps.laRespuestaDebeTenerCodigoEstado(int)?[0m
+  ?[32mAnd ?[0m?[32mla mascota no debe existir en el sistema?[0m                                      ?[90m# com.automation.stepdefinitions.PetApiSteps.laMascotaNODebeExistir()?[0m
 
-@epic:PetStore @feature:CicloCRUDdelrecursoPet @story:CicloCRUDcompletodeunamascota @pet @crud_completo
-Scenario Outline: Consultar una mascota                ?[90m# src/test/resources/features/pet_crud.feature:32?[0m
-  ?[32mGiven ?[0m?[32mque existe la mascota ?[0m?[32m?[1m&quot;Firulais&quot;?[0m               ?[90m# com.automation.stepdefinitions.PetApiSteps.queExisteLaMascota(java.lang.String)?[0m
-  ?[32mWhen ?[0m?[32mconsulto la mascota creada?[0m                      ?[90m# com.automation.stepdefinitions.PetApiSteps.consultoLaMascotaCreada()?[0m
-  ?[32mThen ?[0m?[32mla respuesta debe tener el codigo de estado ?[0m?[32m?[1m200?[0m ?[90m# com.automation.stepdefinitions.PetApiSteps.laRespuestaDebeTenerCodigoEstado(int)?[0m
-  ?[32mAnd ?[0m?[32mla mascota debe tener el nombre ?[0m?[32m?[1m&quot;Firulais&quot;?[0m       ?[90m# com.automation.stepdefinitions.PetApiSteps.laMascotaDebeTenerElNombre(java.lang.String)?[0m
-
-@epic:PetStore @feature:CicloCRUDdelrecursoPet @story:CicloCRUDcompletodeunamascota @pet @crud_completo
-Scenario Outline: Actualizar una mascota                     ?[90m# src/test/resources/features/pet_crud.feature:44?[0m
-  ?[32mGiven ?[0m?[32mque existe la mascota ?[0m?[32m?[1m&quot;Firulais&quot;?[0m                     ?[90m# com.automation.stepdefinitions.PetApiSteps.queExisteLaMascota(java.lang.String)?[0m
-  ?[32mWhen ?[0m?[32mactualizo la mascota con nombre ?[0m?[32m?[1m&quot;Max&quot;?[0m?[32m y estado ?[0m?[32m?[1m&quot;sold&quot;?[0m ?[90m# com.automation.stepdefinitions.PetApiSteps.actualizoLaMascota(java.lang.String,java.lang.String)?[0m
-  ?[32mThen ?[0m?[32mla respuesta debe tener el codigo de estado ?[0m?[32m?[1m200?[0m       ?[90m# com.automation.stepdefinitions.PetApiSteps.laRespuestaDebeTenerCodigoEstado(int)?[0m
-  ?[32mAnd ?[0m?[32mla mascota debe tener el nombre ?[0m?[32m?[1m&quot;Max&quot;?[0m                  ?[90m# com.automation.stepdefinitions.PetApiSteps.laMascotaDebeTenerElNombre(java.lang.String)?[0m
-
-@epic:PetStore @feature:CicloCRUDdelrecursoPet @story:CicloCRUDcompletodeunamascota @pet @crud_completo
-Scenario Outline: Eliminar una mascota                 ?[90m# src/test/resources/features/pet_crud.feature:56?[0m
-  ?[32mGiven ?[0m?[32mque existe la mascota ?[0m?[32m?[1m&quot;Max&quot;?[0m                    ?[90m# com.automation.stepdefinitions.PetApiSteps.queExisteLaMascota(java.lang.String)?[0m
-  ?[32mWhen ?[0m?[32melimino la mascota creada?[0m                       ?[90m# com.automation.stepdefinitions.PetApiSteps.eliminoLaMascotaCreada()?[0m
-  ?[32mThen ?[0m?[32mla respuesta debe tener el codigo de estado ?[0m?[32m?[1m200?[0m ?[90m# com.automation.stepdefinitions.PetApiSteps.laRespuestaDebeTenerCodigoEstado(int)?[0m
-  ?[32mAnd ?[0m?[32mla mascota no debe existir en el sistema?[0m         ?[90m# com.automation.stepdefinitions.PetApiSteps.laMascotaNODebeExistir()?[0m
+@epic:PetStore @feature:CicloCRUDdelrecursoPet @story:CicloCRUDcompletodeunamascota @pet @crud_completo @flujo_completo
+Scenario Outline: Ejecutar ciclo CRUD completo de una mascota                   ?[90m# src/test/resources/features/pet_crud.feature:44?[0m
+  ?[32mGiven ?[0m?[32mque quiero registrar una mascota con nombre ?[0m?[32m?[1m&quot;Luna&quot;?[0m?[32m y estado ?[0m?[32m?[1m&quot;available&quot;?[0m ?[90m# com.automation.stepdefinitions.PetApiSteps.queQuieroRegistrarUnaMascota(java.lang.String,java.lang.String)?[0m
+  ?[32mWhen ?[0m?[32mcreo la mascota en el sistema?[0m                                            ?[90m# com.automation.stepdefinitions.PetApiSteps.creoLaMascota()?[0m
+  ?[32mThen ?[0m?[32mla respuesta debe tener el codigo de estado ?[0m?[32m?[1m200?[0m                          ?[90m# com.automation.stepdefinitions.PetApiSteps.laRespuestaDebeTenerCodigoEstado(int)?[0m
+  ?[32mAnd ?[0m?[32mla mascota debe existir en el sistema con nombre ?[0m?[32m?[1m&quot;Luna&quot;?[0m                   ?[90m# com.automation.stepdefinitions.PetApiSteps.laMascotaDebeExistirConNombre(java.lang.String)?[0m
+  ?[32mWhen ?[0m?[32mconsulto la mascota creada?[0m                                               ?[90m# com.automation.stepdefinitions.PetApiSteps.consultoLaMascotaCreada()?[0m
+  ?[32mThen ?[0m?[32mla respuesta debe tener el codigo de estado ?[0m?[32m?[1m200?[0m                          ?[90m# com.automation.stepdefinitions.PetApiSteps.laRespuestaDebeTenerCodigoEstado(int)?[0m
+  ?[32mAnd ?[0m?[32mla mascota debe tener el nombre ?[0m?[32m?[1m&quot;Luna&quot;?[0m                                    ?[90m# com.automation.stepdefinitions.PetApiSteps.laMascotaDebeTenerElNombre(java.lang.String)?[0m
+  ?[32mWhen ?[0m?[32mactualizo la mascota con nombre ?[0m?[32m?[1m&quot;Luna Updated&quot;?[0m?[32m y estado ?[0m?[32m?[1m&quot;pending&quot;?[0m        ?[90m# com.automation.stepdefinitions.PetApiSteps.actualizoLaMascota(java.lang.String,java.lang.String)?[0m
+  ?[32mThen ?[0m?[32mla respuesta debe tener el codigo de estado ?[0m?[32m?[1m200?[0m                          ?[90m# com.automation.stepdefinitions.PetApiSteps.laRespuestaDebeTenerCodigoEstado(int)?[0m
+  ?[32mAnd ?[0m?[32mla mascota debe tener el nombre ?[0m?[32m?[1m&quot;Luna Updated&quot;?[0m                            ?[90m# com.automation.stepdefinitions.PetApiSteps.laMascotaDebeTenerElNombre(java.lang.String)?[0m
+  ?[32mWhen ?[0m?[32mconsulto la mascota creada?[0m                                               ?[90m# com.automation.stepdefinitions.PetApiSteps.consultoLaMascotaCreada()?[0m
+  ?[32mThen ?[0m?[32mla respuesta debe tener el codigo de estado ?[0m?[32m?[1m200?[0m                          ?[90m# com.automation.stepdefinitions.PetApiSteps.laRespuestaDebeTenerCodigoEstado(int)?[0m
+  ?[32mAnd ?[0m?[32mla mascota debe tener el nombre ?[0m?[32m?[1m&quot;Luna Updated&quot;?[0m                            ?[90m# com.automation.stepdefinitions.PetApiSteps.laMascotaDebeTenerElNombre(java.lang.String)?[0m
+  ?[32mWhen ?[0m?[32melimino la mascota creada?[0m                                                ?[90m# com.automation.stepdefinitions.PetApiSteps.eliminoLaMascotaCreada()?[0m
+  ?[32mThen ?[0m?[32mla respuesta debe tener el codigo de estado ?[0m?[32m?[1m200?[0m                          ?[90m# com.automation.stepdefinitions.PetApiSteps.laRespuestaDebeTenerCodigoEstado(int)?[0m
+  ?[32mAnd ?[0m?[32mla mascota no debe existir en el sistema?[0m                                  ?[90m# com.automation.stepdefinitions.PetApiSteps.laMascotaNODebeExistir()?[0m
 </pre>
 </span>
 </div>
@@ -141,7 +141,7 @@ Scenario Outline: Eliminar una mascota                 ?[90m# src/test/resources
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="https://www.gradle.org">Gradle 9.0.0</a> at 9 mar 2026 16:42:27</p>
+<a href="https://www.gradle.org">Gradle 9.0.0</a> at 11 mar 2026 09:51:18</p>
 </div>
 </div>
 </body>
