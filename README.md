@@ -149,9 +149,7 @@ Ubicaciones comunes en este proyecto:
 - `gradle-build/reports/tests/test/index.html`
 - `gradle-build/cucumber-reports/cucumber.html`
 
-Recomendación:
 
 
 ---
 
-Si deseas, puedo añadir una sección corta de **convenciones de código Screenplay** (nombres de Tasks, manejo de datos de prueba, y estrategia de assertions) para estandarizar el equipo.

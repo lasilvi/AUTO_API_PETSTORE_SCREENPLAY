@@ -8,11 +8,6 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         features = "src/test/resources/features",
         glue = "com.automation.stepdefinitions",
-        plugin = {
-                "pretty",
-                "html:gradle-build/cucumber-reports/cucumber.html",
-                "json:gradle-build/cucumber-reports/cucumber.json"
-        },
         tags = "@pet"
 )
 public class CucumberTestRunner {
